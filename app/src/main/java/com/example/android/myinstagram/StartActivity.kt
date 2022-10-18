@@ -1,5 +1,6 @@
 package com.example.android.myinstagram
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,10 +11,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 
 class StartActivity : AppCompatActivity() {
-    lateinit var imageIcon:ImageView
-    lateinit var linearLayout: LinearLayout
-    lateinit var login:Button
-    lateinit var register:Button
+    private lateinit var imageIcon:ImageView
+    private lateinit var linearLayout: LinearLayout
+    private lateinit var login:Button
+    private lateinit var register:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
@@ -22,7 +23,14 @@ class StartActivity : AppCompatActivity() {
         login=findViewById(R.id.login)
         register=findViewById(R.id.register)
 
-        linearLayout.animate().alpha(0f).setDuration(1)
+        login.setOnClickListener {
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
+        register.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+        }
+
+        linearLayout.animate().alpha(0f).duration = 1
         val animation = TranslateAnimation(0F,0F,0F,-2000F)
         animation.duration=2000
         animation.fillAfter=false
@@ -39,7 +47,7 @@ class StartActivity : AppCompatActivity() {
             imageIcon.clearAnimation()
             imageIcon.visibility= View.INVISIBLE
             linearLayout.visibility=View.VISIBLE
-            linearLayout.animate().alpha(1f).setDuration(1000)
+            linearLayout.animate().alpha(1f).duration = 1000
         }
 
         override fun onAnimationRepeat(p0: Animation?) {
