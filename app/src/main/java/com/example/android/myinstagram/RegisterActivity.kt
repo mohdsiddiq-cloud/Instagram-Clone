@@ -1,18 +1,14 @@
 package com.example.android.myinstagram
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.TextureView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import org.w3c.dom.Text
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var username:EditText
@@ -21,7 +17,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var password:EditText
     private lateinit var register:Button
     private lateinit var login:TextView
-
+    private lateinit var pd:ProgressDialog
     private lateinit var auth:FirebaseAuth
     private lateinit var mrootRef: DatabaseReference
 
@@ -35,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         password=findViewById(R.id.password)
         login=findViewById(R.id.login_user)
         register=findViewById(R.id.register1)
-
+        pd= ProgressDialog(this)
         login.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
         }
@@ -55,11 +51,11 @@ class RegisterActivity : AppCompatActivity() {
                 registerUser(txtusername,txtname,txtemail,txtpassword);
             }
         }
-        
-
     }
 
      fun registerUser(txtusername: String, txtname: String, txtemail: String, txtpassword: String) {
+         pd.setMessage("please wait..")
+         pd.show()
         auth.createUserWithEmailAndPassword(txtemail,txtpassword).addOnSuccessListener {
             var hm:HashMap<String,String> = HashMap<String,String>()
             hm.put("name",txtname)
@@ -67,12 +63,19 @@ class RegisterActivity : AppCompatActivity() {
             hm.put("username",txtusername)
             auth.currentUser?.let { it1 -> hm.put("id", it1.uid) }
             auth.currentUser?.let { it1 -> mrootRef.child("Users").child(it1.uid).setValue(hm).addOnCompleteListener {
-                if(it.isSuccessful)
-                    Toast.makeText(this,"update the profile for better Experience!",Toast.LENGTH_LONG).show()
+                if(it.isSuccessful) {
+                    pd.dismiss()
+                    Toast.makeText(
+                        this,
+                        "update the profile for better Experience!",
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 startActivity(Intent(this,MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
-
+                }
             }.addOnFailureListener {
+                pd.dismiss()
                 Toast.makeText(this,"something went wrong",Toast.LENGTH_LONG).show()
             } }
         }
