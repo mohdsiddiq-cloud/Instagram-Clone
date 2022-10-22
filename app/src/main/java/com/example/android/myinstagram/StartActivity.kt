@@ -3,12 +3,14 @@ package com.example.android.myinstagram
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ActionMode
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.google.firebase.auth.FirebaseAuth
 
 class StartActivity : AppCompatActivity() {
     private lateinit var imageIcon:ImageView
@@ -36,6 +38,16 @@ class StartActivity : AppCompatActivity() {
         animation.fillAfter=false
         animation.setAnimationListener(MyAnimationListner())
         imageIcon.animation=animation
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(FirebaseAuth.getInstance().currentUser!=null){
+            startActivity(Intent(this,MainActivity::class.java));
+            finish();
+        }
     }
 
     inner class MyAnimationListner: Animation.AnimationListener{
@@ -55,4 +67,6 @@ class StartActivity : AppCompatActivity() {
         }
 
     }
+
+
 }

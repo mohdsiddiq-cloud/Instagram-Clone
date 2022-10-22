@@ -6,9 +6,11 @@
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/drawable/button_background.xml" value="0.18888888888888888" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/drawable/edit_text_background.xml" value="0.18888888888888888" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_login.xml" value="0.24270833333333333" />
-        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
+        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_register.xml" value="0.24270833333333333" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_start.xml" value="0.25677083333333334" />
+        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/menu/bottom_menu.xml" value="0.25677083333333334" />
+        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/menu/try_menu.xml" value="0.25677083333333334" />
       </map>
     </option>
   </component>
