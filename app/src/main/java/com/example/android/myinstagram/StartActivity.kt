@@ -17,6 +17,7 @@ class StartActivity : AppCompatActivity() {
     private lateinit var linearLayout: LinearLayout
     private lateinit var login:Button
     private lateinit var register:Button
+    lateinit var mAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
@@ -24,7 +25,7 @@ class StartActivity : AppCompatActivity() {
         linearLayout=findViewById(R.id.linearLayout)
         login=findViewById(R.id.login)
         register=findViewById(R.id.register)
-
+        mAuth= FirebaseAuth.getInstance()
         login.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
         }
@@ -39,16 +40,16 @@ class StartActivity : AppCompatActivity() {
         animation.setAnimationListener(MyAnimationListner())
         imageIcon.animation=animation
 
-
     }
 
     override fun onStart() {
         super.onStart()
-        if(FirebaseAuth.getInstance().currentUser!=null){
+        if(mAuth.currentUser!=null){
             startActivity(Intent(this,MainActivity::class.java));
             finish();
         }
     }
+
 
     inner class MyAnimationListner: Animation.AnimationListener{
         override fun onAnimationStart(p0: Animation?) {

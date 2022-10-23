@@ -62,6 +62,8 @@ class RegisterActivity : AppCompatActivity() {
             hm.put("email",txtemail)
             hm.put("username",txtusername)
             auth.currentUser?.let { it1 -> hm.put("id", it1.uid) }
+            hm.put("bio","");
+            hm.put("imageurl","default");
             auth.currentUser?.let { it1 -> mrootRef.child("Users").child(it1.uid).setValue(hm).addOnCompleteListener {
                 if(it.isSuccessful) {
                     pd.dismiss()
