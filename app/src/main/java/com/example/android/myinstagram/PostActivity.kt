@@ -70,7 +70,7 @@ class PostActivity : AppCompatActivity() {
                 map.put("description",description.text.toString())
                 FirebaseAuth.getInstance().currentUser?.let { it1 -> map.put("publisher", it1.uid) }
                 ref.child(postId).setValue(map)
-                var mHashref:DatabaseReference=FirebaseDatabase.getInstance().getReference().child("HashTags")
+                var mHashref:DatabaseReference=FirebaseDatabase.getInstance().getReference("HashTags")
                 var hashTags:List<String> =description.hashtags
                 if(!hashTags.isEmpty()){
                     var tag:String

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/drawable-anydpi/ic_search.xml" value="0.2675925925925926" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/drawable/button_background.xml" value="0.18888888888888888" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/drawable/edit_text_background.xml" value="0.18888888888888888" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/activity_login.xml" value="0.24270833333333333" />
@@ -15,6 +16,7 @@
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/fragment_notification.xml" value="0.25677083333333334" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/fragment_profile.xml" value="0.25677083333333334" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/fragment_search.xml" value="0.24270833333333333" />
+        <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/layout/user_item.xml" value="0.25677083333333334" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/menu/bottom_menu.xml" value="0.25677083333333334" />
         <entry key="..\:/my_android_project/MyInstagram/app/src/main/res/menu/try_menu.xml" value="0.25677083333333334" />
       </map>

@@ -63,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
             hm.put("username",txtusername)
             auth.currentUser?.let { it1 -> hm.put("id", it1.uid) }
             hm.put("bio","");
-            hm.put("imageurl","default");
+            hm.put("imageurl","https://firebasestorage.googleapis.com/v0/b/myinstagram-be2f4.appspot.com/o/posts%2F1667542692425.null?alt=media&token=b7e48494-6a12-4f86-95c2-809323bcc279");
             auth.currentUser?.let { it1 -> mrootRef.child("Users").child(it1.uid).setValue(hm).addOnCompleteListener {
                 if(it.isSuccessful) {
                     pd.dismiss()

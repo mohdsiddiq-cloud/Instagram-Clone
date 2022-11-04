@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.google.firebase.auth.FirebaseAuth
 
+
 class StartActivity : AppCompatActivity() {
     private lateinit var imageIcon:ImageView
     private lateinit var linearLayout: LinearLayout
@@ -46,10 +47,8 @@ class StartActivity : AppCompatActivity() {
         super.onStart()
         if(mAuth.currentUser!=null){
             startActivity(Intent(this,MainActivity::class.java));
-            finish();
         }
     }
-
 
     inner class MyAnimationListner: Animation.AnimationListener{
         override fun onAnimationStart(p0: Animation?) {
