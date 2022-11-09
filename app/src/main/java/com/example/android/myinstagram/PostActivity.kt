@@ -6,15 +6,17 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.MimeTypeMap
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import com.hendraanggrian.appcompat.socialview.Hashtag
+import com.hendraanggrian.appcompat.widget.HashtagArrayAdapter
 import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
 import com.theartofdev.edmodo.cropper.CropImage
 
@@ -78,7 +80,7 @@ class PostActivity : AppCompatActivity() {
                         map.clear()
                         map.put("tag",tag.toLowerCase())
                         map.put("postId",postId)
-                        mHashref.child(tag.toLowerCase()).setValue(map)
+                        mHashref.child(tag.toLowerCase()).child(postId).setValue(map)
                     }
                 }
                 pd.dismiss()
@@ -109,5 +111,25 @@ class PostActivity : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val hashtagAdapter: ArrayAdapter<Hashtag> = HashtagArrayAdapter(applicationContext)
+        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(itemData: DataSnapshot in snapshot.children){
+                    hashtagAdapter.add(itemData.key?.let { Hashtag(it,
+                        itemData.childrenCount.toInt()
+                    ) })
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        description.hashtagAdapter=hashtagAdapter
     }
 }
